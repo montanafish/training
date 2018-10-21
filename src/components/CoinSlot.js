@@ -18,6 +18,7 @@ export default class CoinSlot extends Component {
   cancel() {
     this.props.cancel()
     this.coinSlot.current.value = ''
+    this.coinSlot.current.focus()
   }
 
   handleKeyPress = e => {
