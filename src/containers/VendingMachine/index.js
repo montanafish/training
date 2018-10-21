@@ -3,7 +3,7 @@ import './VendingMachine.css'
 
 import CoinSlot from '../../components/CoinSlot'
 import Juice from '../../components/Juice'
-import Display from '../../components/Display'
+import VendingMachineDisplay from '../../components/VendingMachineDisplay'
 
 class VendingMachine extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class VendingMachine extends Component {
           <Juice name="Fanta" price={150} color="Blue" selectJuice={this.selectJuice} />
         </div>
 
-        <Display message={this.state.message} balance={this.state.balance} />
+        <VendingMachineDisplay message={this.state.message} balance={this.state.balance} />
         <CoinSlot addCoin={this.addCoin} />
       </div>
     )
