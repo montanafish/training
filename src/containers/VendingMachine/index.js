@@ -59,6 +59,8 @@ class VendingMachine extends Component {
           <Juice name="Coke" price={130} color="red" selectJuice={this.selectJuice} />
           <Juice name="Sprite" price={120} color="Green" selectJuice={this.selectJuice} />
           <Juice name="Fanta" price={150} color="Blue" selectJuice={this.selectJuice} />
+          <Juice name="Fanta Orange" price={150} color="Orange" selectJuice={this.selectJuice} />
+          <Juice name="Asahi Super Dry" price={300} color="Silver" selectJuice={this.selectJuice} />
         </div>
 
         <VendingMachineDisplay
