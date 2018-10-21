@@ -15,7 +15,7 @@ class VendingMachine extends Component {
   }
 
   addCoin = coin => {
-    this.setState({ message: 'Please Choose Your Drink', balance: coin })
+    this.setState({ message: 'Please Choose Your Drink', balance: this.state.balance + coin })
   }
 
   selectJuice = price => {

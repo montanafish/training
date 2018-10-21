@@ -7,7 +7,7 @@ export default class CoinSlot extends Component {
   }
 
   addCoin() {
-    this.props.addCoin(this.coinSlot.current.value)
+    this.props.addCoin(parseInt(this.coinSlot.current.value || 0))
     this.coinSlot.current.value = ''
   }
 
