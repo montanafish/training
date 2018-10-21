@@ -15,7 +15,7 @@ export default class VendingMachineDisplay extends Display {
       if (balance >= juicePrice) {
         message = `Bought ${juiceName}. ${this.props.balance} yen remainig.`
       } else {
-        message = `Please insert ${juicePrice - this.props.balance} yen`
+        message = `Please insert ${juicePrice - this.props.balance} yen.  Your balance is ${this.props.balance}`
       }
     } else {
       // display balance
