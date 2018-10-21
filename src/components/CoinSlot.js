@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 export default class CoinSlot extends Component {
+  constructor(props) {
+    super(props)
+    this.coinSlot = React.createRef()
+  }
+
   render() {
     return (
       <div
@@ -8,9 +13,9 @@ export default class CoinSlot extends Component {
           margin: '50px',
         }}
       >
-        Yen: <input type="number" name="money" value={this.props.coin} />
+        Yen: <input type="number" name="money" ref={this.coinSlot} />
         <br />
-        <button onClick={() => this.props.addCoin()}>Add</button>
+        <button onClick={() => this.props.addCoin(this.coinSlot.current.value)}>Add</button>
       </div>
     )
   }

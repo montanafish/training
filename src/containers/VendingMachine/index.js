@@ -18,17 +18,13 @@ class VendingMachine extends Component {
     this.setState({ message: 'Please Choose Your Drink', balance: coin })
   }
 
-  buyJuice = price => {
+  selectJuice = price => {
     this.state.balance >= price
       ? this.setState({
           message: 'Thank you',
           balance: this.state.balance - price,
         })
       : this.setState({ message: 'The money is not enough ' })
-  }
-
-  coinAmount = e => {
-    this.setState({ balance: e.target.value })
   }
 
   render() {
@@ -42,13 +38,13 @@ class VendingMachine extends Component {
         }}
       >
         <div>
-          <Juice name="Coke" price={130} color="red" selectJuice={this.buyJuice} />
-          <Juice name="Sprite" price={120} color="Green" selectJuice={this.buyJuice} />
-          <Juice name="Fanta" price={150} color="Blue" selectJuice={this.buyJuice} />
+          <Juice name="Coke" price={130} color="red" selectJuice={this.selectJuice} />
+          <Juice name="Sprite" price={120} color="Green" selectJuice={this.selectJuice} />
+          <Juice name="Fanta" price={150} color="Blue" selectJuice={this.selectJuice} />
         </div>
 
         <Display message={this.state.message} balance={this.state.balance} />
-        <CoinSlot addCoin={this.addCoin} coinAmount={this.coinAmount} balance={this.state.balance} />
+        <CoinSlot addCoin={this.addCoin} />
       </div>
     )
   }
