@@ -9,26 +9,35 @@ class VendingMachine extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: '',
       balance: 0,
+      selectedJuiceName: '',
+      selectedJuicePrice: 0,
+      isJuiceSelected: false,
     }
   }
 
   addCoin = coin => {
-    this.setState({ message: 'Please Choose Your Drink', balance: this.state.balance + coin })
+    this.setState({
+      balance: this.state.balance + coin,
+      isJuiceSelected: false,
+      selectedJuiceName: '',
+      selectedJuicePrice: 0,
+    })
   }
 
   cancel = () => {
     this.setState({ balance: 0 })
   }
 
-  selectJuice = price => {
+  selectJuice = (price, name) => {
     this.state.balance >= price
       ? this.setState({
-          message: 'Thank you',
           balance: this.state.balance - price,
+          isJuiceSelected: true,
+          selectedJuiceName: name,
+          selectedJuicePrice: price,
         })
-      : this.setState({ message: 'The money is not enough ' })
+      : this.setState({ isJuiceSelected: true, selectedJuiceName: name, selectedJuicePrice: price })
   }
 
   render() {
@@ -47,7 +56,12 @@ class VendingMachine extends Component {
           <Juice name="Fanta" price={150} color="Blue" selectJuice={this.selectJuice} />
         </div>
 
-        <VendingMachineDisplay message={this.state.message} balance={this.state.balance} />
+        <VendingMachineDisplay
+          balance={this.state.balance}
+          isJuiceSelected={this.state.isJuiceSelected}
+          juiceName={this.state.selectedJuiceName}
+          juicePrice={this.state.selectedJuicePrice}
+        />
         <CoinSlot addCoin={this.addCoin} cancel={this.cancel} />
       </div>
     )
