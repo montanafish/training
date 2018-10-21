@@ -26,7 +26,12 @@ class VendingMachine extends Component {
   }
 
   cancel = () => {
-    this.setState({ balance: 0 })
+    this.setState({
+      balance: 0,
+      isJuiceSelected: false,
+      selectedJuiceName: '',
+      selectedJuicePrice: 0,
+    })
   }
 
   selectJuice = (price, name) => {

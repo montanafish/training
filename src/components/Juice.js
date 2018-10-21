@@ -19,7 +19,7 @@ export default class Juice extends Component {
             margin: 'auto',
           }}
         />
-        <button onClick={() => this.props.selectJuice(this.props.price)}>{this.props.name}</button>
+        <button onClick={() => this.props.selectJuice(this.props.price, this.props.name)}>{this.props.name}</button>
       </div>
     )
   }
