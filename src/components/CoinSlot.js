@@ -11,6 +11,11 @@ export default class CoinSlot extends Component {
     this.coinSlot.current.value = ''
   }
 
+  cancel() {
+    this.props.cancel()
+    this.coinSlot.current.value = ''
+  }
+
   render() {
     return (
       <div
@@ -21,6 +26,7 @@ export default class CoinSlot extends Component {
         Yen: <input type="number" name="money" ref={this.coinSlot} />
         <br />
         <button onClick={() => this.addCoin()}>Add</button>
+        <button onClick={() => this.cancel()}>Cancel</button>
       </div>
     )
   }
