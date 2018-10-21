@@ -4,8 +4,8 @@ export default class Display extends Component {
   render() {
     let message = 'Please insert coin.'
 
-    if (this.props.totalMoney > 0) {
-      message = `${this.props.message}. You have inserted ${this.props.totalMoney} yen`
+    if (this.props.balance > 0) {
+      message = `${this.props.message}. You have inserted ${this.props.balance} yen`
     }
 
     return (

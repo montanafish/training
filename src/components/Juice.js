@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 export default class Juice extends Component {
-  state = {}
   render() {
     return (
       <div
@@ -20,7 +19,7 @@ export default class Juice extends Component {
             margin: 'auto',
           }}
         />
-        <button onClick={() => this.props.pushCoke(this.props.price)}>{this.props.name}</button>
+        <button onClick={() => this.props.selectJuice(this.props.price)}>{this.props.name}</button>
       </div>
     )
   }
