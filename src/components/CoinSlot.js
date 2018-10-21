@@ -6,6 +6,10 @@ export default class CoinSlot extends Component {
     this.coinSlot = React.createRef()
   }
 
+  componentDidMount() {
+    this.coinSlot.current.focus()
+  }
+
   addCoin() {
     this.props.addCoin(parseInt(this.coinSlot.current.value || 0))
     this.coinSlot.current.value = ''
@@ -16,6 +20,12 @@ export default class CoinSlot extends Component {
     this.coinSlot.current.value = ''
   }
 
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.addCoin()
+    }
+  }
+
   render() {
     return (
       <div
@@ -23,7 +33,7 @@ export default class CoinSlot extends Component {
           margin: '50px',
         }}
       >
-        Yen: <input type="number" name="money" ref={this.coinSlot} />
+        Yen: <input type="number" name="money" ref={this.coinSlot} onKeyPress={e => this.handleKeyPress(e)} />
         <br />
         <button onClick={() => this.addCoin()}>Add</button>
         <button onClick={() => this.cancel()}>Cancel</button>
