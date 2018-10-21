@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 
 export default class Display extends Component {
-  state = {}
   render() {
+    let message = 'Please insert coin.'
+
+    if (this.props.totalMoney > 0) {
+      message = `${this.props.message}. You have inserted ${this.props.totalMoney} yen`
+    }
+
     return (
       <div
         style={{
@@ -13,8 +18,7 @@ export default class Display extends Component {
           margin: '50px',
         }}
       >
-        <th>{this.props.message}</th>
-        <tr>{this.props.totalMoney}</tr>
+        <p>{message}</p>
       </div>
     )
   }
