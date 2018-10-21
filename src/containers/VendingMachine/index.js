@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './VendingMachine.css'
 
-import Coin from '../../components/Coin'
+import CoinSlot from '../../components/CoinSlot'
 import Juice from '../../components/Juice'
 import Display from '../../components/Display'
 
@@ -49,7 +49,7 @@ class VendingMachine extends Component {
         </div>
 
         <Display message={this.state.message} totalMoney={this.state.totalMoney} />
-        <Coin addCoin={this.addCoin} coinAmount={this.coinAmount} totalMoney={this.state.totalMoney} />
+        <CoinSlot addCoin={this.addCoin} coinAmount={this.coinAmount} totalMoney={this.state.totalMoney} />
       </div>
     )
   }
