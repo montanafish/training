@@ -36,26 +36,47 @@ class VendingMachine extends Component {
   };
 
   selectJuice = (price, name, stock) => {
-    this.state.balance >= price
-      ? this.setState({
-          balance: this.state.balance - price,
-          isJuiceSelected: true,
-          selectedJuiceName: name,
-          selectedJuicePrice: price,
+    if (this.state.balance >= price) {
+      if (name === "Coke") {
+        this.setState({
+          stock: { ...this.state.stock, coke: this.state.stock.coke - 1 }
+        });
+      } else if (name === "Sprite") {
+        this.setState({
+          stock: { ...this.state.stock, sprite: this.state.stock.sprite - 1 }
+        });
+      } else if (name === "Fanta") {
+        this.setState({
+          stock: { ...this.state.stock, fanta: this.state.stock.fanta - 1 }
+        });
+      } else if (name === "Fanta Orange") {
+        this.setState({
           stock: {
             ...this.state.stock,
-            coke: this.state.stock.coke - 1,
-            sprite: this.state.stock.sprite - 1,
-            fanta: this.state.stock.fanta - 1,
-            fantaOrange: this.state.stock.fantaOrange - 1,
+            fantaOrange: this.state.stock.fantaOrange - 1
+          }
+        });
+      } else if (name === "Asahi Super Dry") {
+        this.setState({
+          stock: {
+            ...this.state.stock,
             asahiSuperDry: this.state.stock.asahiSuperDry - 1
           }
-        })
-      : this.setState({
-          isJuiceSelected: true,
-          selectedJuiceName: name,
-          selectedJuicePrice: price
         });
+      }
+      this.setState({
+        balance: this.state.balance - price,
+        isJuiceSelected: true,
+        selectedJuiceName: name,
+        selectedJuicePrice: price
+      });
+    } else {
+      this.setState({
+        isJuiceSelected: true,
+        selectedJuiceName: name,
+        selectedJuicePrice: price
+      });
+    }
   };
 
   render() {
