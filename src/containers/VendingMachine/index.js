@@ -44,11 +44,11 @@ class VendingMachine extends Component {
           selectedJuicePrice: price,
           stock: {
             ...this.state.stock,
-            coke: this.state.stock.coke - 1
-            // sprite: this.state.stock.sprite - 1,
-            // fanta: this.state.stock.fanta - 1,
-            // fantaOrange: this.state.stock.fantaOrange - 1,
-            // asahiSuperDry: this.state.stock.asahiSuperDry - 1
+            coke: this.state.stock.coke - 1,
+            sprite: this.state.stock.sprite - 1,
+            fanta: this.state.stock.fanta - 1,
+            fantaOrange: this.state.stock.fantaOrange - 1,
+            asahiSuperDry: this.state.stock.asahiSuperDry - 1
           }
         })
       : this.setState({
