@@ -1,26 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Juice extends Component {
   render() {
     return (
       <div
         style={{
-          display: 'inline-block',
-          margin: '10px',
+          display: "inline-block",
+          margin: "10px"
         }}
       >
         <div
           style={{
-            width: '10px',
-            borderRadius: '2px',
-            padding: '20px',
-            border: 'solid 2px',
+            width: "30px",
+            height: "40px",
+            borderRadius: "2px",
+            padding: "2px",
+            border: "solid 2px",
+            fontSize: "3px",
             background: this.props.color,
-            margin: 'auto',
+            margin: "auto"
           }}
-        />
-        <button onClick={() => this.props.selectJuice(this.props.price, this.props.name)}>{this.props.name}</button>
+        >
+          {this.props.name}
+        </div>
+        <button
+          onClick={() =>
+            this.props.selectJuice(this.props.price, this.props.name)
+          }
+        >
+          ¥{this.props.price}
+        </button>
       </div>
-    )
+    );
   }
 }
