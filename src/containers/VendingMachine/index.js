@@ -1,48 +1,60 @@
-import React, { Component } from "react";
-import "./VendingMachine.css";
+import React, { Component } from 'react'
+import './VendingMachine.css'
 
-import CoinSlot from "../../components/CoinSlot";
-import Juice from "../../components/Juice";
-import VendingMachineDisplay from "../../components/VendingMachineDisplay";
+import CoinSlot from '../../components/CoinSlot'
+import Juice from '../../components/Juice'
+import VendingMachineDisplay from '../../components/VendingMachineDisplay'
 
 class VendingMachine extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       balance: 0,
-      selectedJuiceName: "",
+      selectedJuiceName: '',
+      selectedJuiceCode: '',
       selectedJuicePrice: 0,
       isJuiceSelected: false,
-      stock: { coke: 2, sprite: 2, fanta: 2, fantaOrange: 2, asahiSuperDry: 2 }
-    };
+      stock: { coke: 2, sprite: 2, fanta: 2, fantaOrange: 2, asahiSuperDry: 2 },
+    }
   }
 
   addCoin = coin => {
     this.setState({
       balance: this.state.balance + coin,
       isJuiceSelected: false,
-      selectedJuiceName: "",
-      selectedJuicePrice: 0
-    });
-  };
+      selectedJuiceName: '',
+      selectedJuiceCode: '',
+      selectedJuicePrice: 0,
+    })
+  }
 
   cancel = () => {
     this.setState({
       balance: 0,
       isJuiceSelected: false,
-      selectedJuiceName: "",
-      selectedJuicePrice: 0
-    });
-  };
+      selectedJuiceName: '',
+      selectedJuiceCode: '',
+      selectedJuicePrice: 0,
+    })
+  }
 
-  selectJuice = (price, name) => {
+  selectJuice = (price, name, code) => {
     this.setState({
       isJuiceSelected: true,
       selectedJuiceName: name,
-      selectedJuicePrice: price
-    });
+      selectedJuiceCode: code,
+      selectedJuicePrice: price,
+    })
 
     if (this.state.balance >= price) {
+      if (this.state.stock[code] > 0) {
+        this.setState({
+          balance: this.state.balance - price,
+          stock: { ...this.state.stock, [code]: this.state.stock[code] - 1 },
+        })
+      }
+
+      /*
       if (this.state.stock.coke > 0 && name === "Coke") {
         this.setState({
           balance: this.state.balance - price,
@@ -78,22 +90,24 @@ class VendingMachine extends Component {
           }
         });
       }
+      */
     }
-  };
+  }
 
   render() {
     return (
       <div
         style={{
-          width: "250px",
-          height: "400px",
-          border: "solid 10px",
-          margin: "auto"
+          width: '250px',
+          height: '400px',
+          border: 'solid 10px',
+          margin: 'auto',
         }}
       >
         <div>
           <Juice
             name="Coke"
+            code="coke"
             price={130}
             color="red"
             selectJuice={this.selectJuice}
@@ -101,6 +115,7 @@ class VendingMachine extends Component {
           />
           <Juice
             name="Sprite"
+            code="sprite"
             price={120}
             color="Green"
             selectJuice={this.selectJuice}
@@ -108,6 +123,7 @@ class VendingMachine extends Component {
           />
           <Juice
             name="Fanta"
+            code="fanta"
             price={150}
             color="Blue"
             selectJuice={this.selectJuice}
@@ -115,6 +131,7 @@ class VendingMachine extends Component {
           />
           <Juice
             name="Fanta Orange"
+            code="fantaOrange"
             price={150}
             color="Orange"
             selectJuice={this.selectJuice}
@@ -122,6 +139,7 @@ class VendingMachine extends Component {
           />
           <Juice
             name="Asahi Super Dry"
+            code="asahiSuperDry"
             price={300}
             color="Silver"
             selectJuice={this.selectJuice}
@@ -133,13 +151,14 @@ class VendingMachine extends Component {
           balance={this.state.balance}
           isJuiceSelected={this.state.isJuiceSelected}
           juiceName={this.state.selectedJuiceName}
+          juiceCode={this.state.selectedJuiceCode}
           juicePrice={this.state.selectedJuicePrice}
           stock={this.state.stock}
         />
         <CoinSlot addCoin={this.addCoin} cancel={this.cancel} />
       </div>
-    );
+    )
   }
 }
 
-export default VendingMachine;
+export default VendingMachine
