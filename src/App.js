@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import VendeingMachine from './containers/VendingMachine'
+import React, { Component } from "react";
+import VendeingMachine from "./containers/VendingMachine";
 
 export default class App extends Component {
   render() {
-    return <VendeingMachine />
+    return <VendeingMachine />;
   }
 }

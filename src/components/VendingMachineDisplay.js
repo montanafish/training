@@ -13,18 +13,13 @@ export default class VendingMachineDisplay extends Display {
     const isJuiceSelected = this.props.isJuiceSelected || false;
     const juiceName = this.props.juiceName;
     const juicePrice = this.props.juicePrice;
-    const stock = this.props.stock;
 
     let message = "";
 
     if (isJuiceSelected) {
       // display juice name and remainging balance
-      if (balance >= juicePrice && stock > 0) {
+      if (balance >= juicePrice) {
         message = `Bought ${juiceName}.${formatter.format(
-          this.props.balance
-        )} remainig.`;
-      } else if (balance >= juicePrice && stock <= 0) {
-        message = `${juiceName} is out of order.${formatter.format(
           this.props.balance
         )} remainig.`;
       } else {

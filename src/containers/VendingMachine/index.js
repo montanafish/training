@@ -35,47 +35,49 @@ class VendingMachine extends Component {
     });
   };
 
-  selectJuice = (price, name, stock) => {
+  selectJuice = (price, name) => {
+    this.setState({
+      isJuiceSelected: true,
+      selectedJuiceName: name,
+      selectedJuicePrice: price
+    });
+
     if (this.state.balance >= price) {
-      if (name === "Coke") {
+      if (this.state.stock.coke > 0 && name === "Coke") {
         this.setState({
+          balance: this.state.balance - price,
           stock: { ...this.state.stock, coke: this.state.stock.coke - 1 }
         });
-      } else if (name === "Sprite") {
+      } else if (this.state.stock.sprite > 0 && name === "Sprite") {
         this.setState({
+          balance: this.state.balance - price,
           stock: { ...this.state.stock, sprite: this.state.stock.sprite - 1 }
         });
-      } else if (name === "Fanta") {
+      } else if (this.state.stock.fanta > 0 && name === "Fanta") {
         this.setState({
+          balance: this.state.balance - price,
           stock: { ...this.state.stock, fanta: this.state.stock.fanta - 1 }
         });
-      } else if (name === "Fanta Orange") {
+      } else if (this.state.stock.fantaOrange > 0 && name === "Fanta Orange") {
         this.setState({
+          balance: this.state.balance - price,
           stock: {
             ...this.state.stock,
             fantaOrange: this.state.stock.fantaOrange - 1
           }
         });
-      } else if (name === "Asahi Super Dry") {
+      } else if (
+        this.state.stock.asahiSuperDry > 0 &&
+        name === "Asahi Super Dry"
+      ) {
         this.setState({
+          balance: this.state.balance - price,
           stock: {
             ...this.state.stock,
             asahiSuperDry: this.state.stock.asahiSuperDry - 1
           }
         });
       }
-      this.setState({
-        balance: this.state.balance - price,
-        isJuiceSelected: true,
-        selectedJuiceName: name,
-        selectedJuicePrice: price
-      });
-    } else {
-      this.setState({
-        isJuiceSelected: true,
-        selectedJuiceName: name,
-        selectedJuicePrice: price
-      });
     }
   };
 
@@ -132,6 +134,7 @@ class VendingMachine extends Component {
           isJuiceSelected={this.state.isJuiceSelected}
           juiceName={this.state.selectedJuiceName}
           juicePrice={this.state.selectedJuicePrice}
+          stock={this.state.stock}
         />
         <CoinSlot addCoin={this.addCoin} cancel={this.cancel} />
       </div>
