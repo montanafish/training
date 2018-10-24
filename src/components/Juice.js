@@ -24,7 +24,7 @@ export default class Juice extends Component {
           {this.props.name}
         </div>
         <button onClick={() => this.props.selectJuice(this.props.price, this.props.name, this.props.code)}>
-          ¥{this.props.price}
+          {this.props.stock === 0 ? 'OUT' : `¥${this.props.price}`}
         </button>
       </div>
     )
