@@ -19,18 +19,18 @@ export default class VendingMachineDisplay extends Display {
     let message = ''
 
     if (isJuiceSelected) {
-      // display juice name and remainging balance
-      if (balance >= juicePrice) {
-        // out of stock
-        if (stock[juiceCode] === 0) {
-          message = `${juiceName} is out of stock. ${formatter.format(this.props.balance)} remainig.`
-        } else {
-          message = `Bought ${juiceName}.${formatter.format(this.props.balance)} remainig.`
-        }
+      // out of stock
+      if (stock[juiceCode] === 0) {
+        message = `${juiceName} is out of stock. ${formatter.format(this.props.balance)} remainig.`
       } else {
-        message = `Please insert ${formatter.format(
-          juicePrice - this.props.balance
-        )}.  Your balance is ${formatter.format(this.props.balance)}`
+        // display juice name and remainging balance
+        if (balance >= juicePrice) {
+          message = `Bought ${juiceName}.${formatter.format(this.props.balance)} remainig.`
+        } else {
+          message = `Please insert ${formatter.format(
+            juicePrice - this.props.balance
+          )}.  Your balance is ${formatter.format(this.props.balance)}`
+        }
       }
     } else {
       // display balance
